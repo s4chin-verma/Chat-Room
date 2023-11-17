@@ -95,7 +95,7 @@ export default function SetAvatar() {
                         {avatar.map((avatarData, index) => {
                           return (
                             <div className="avatar mx-3" style={{
-                              border: selectedAvatar === index ? "0.2rem solid #4e0eff" : "none"
+                              border: selectedAvatar === index ? "0.2rem solid #4e0eff" : "0.2rem solid #FAF6F0"
                             }}
                               key={index}>
                               <img style={{ height: '6rem', transition: '0.5s ease-in-out' }}

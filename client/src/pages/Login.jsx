@@ -47,9 +47,8 @@ export default function Login() {
           localStorage.setItem('chat-user', JSON.stringify(data.user));
           localStorage.setItem('chat-token', data.token);
           setTimeout(() => {
-            localStorage.removeItem('chat-user');
-            localStorage.removeItem('chat-token');
-          }, 3600000);
+            localStorage.clear();
+          }, 100000);
           navigate('/');
         }
       } catch (error) {

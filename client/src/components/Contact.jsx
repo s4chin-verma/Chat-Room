@@ -7,7 +7,6 @@ import {
     MDBTypography,
     MDBInputGroup,
 } from "mdb-react-ui-kit";
-import { Socket } from "socket.io-client";
 
 export default function App({ contacts, currentUser, changeChat, socket }) {
     const [currentUserName, setCurrentUserName] = useState(undefined);
@@ -35,12 +34,10 @@ export default function App({ contacts, currentUser, changeChat, socket }) {
                             className="d-flex align-self-center me-3"
                             width="60"
                         />
-                        <span className={`badge ${currentUser.isOnline ? 'bg-success' : 'bg-danger'} badge-dot`}></span>
                     </div>
                     <div className="pt-1">
                         <div className="pt-1">
-                            <p className="fw-bold mb-0">{currentUserName}</p>
-                            <p className="small text-muted">Hello, Are you there?</p>
+                            <h3 className="fw-bold my-auto py-auto">{currentUserName}</h3>
                         </div>
                     </div>
                 </div>
@@ -71,7 +68,7 @@ export default function App({ contacts, currentUser, changeChat, socket }) {
                         return (
                             <div
                                 key={contact._id}
-                                className={`contact ${index === currentSelected ? "bg-secondary shadow-1-strong" : ""}`}
+                                style={{ backgroundColor: index === currentSelected ? "#F3F3F3" : "" }}
                                 onClick={() => changeCurrentChat(index, contact)}
                             >
                                 <li className="p-2 border-bottom">

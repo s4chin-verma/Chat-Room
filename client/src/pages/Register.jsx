@@ -32,7 +32,6 @@ export default function Register() {
           toast.error(data.msg, toastOptions);
         }
         if (data.status === true) {
-          localStorage.setItem("chat-user", JSON.stringify(data.user));
           navigate("/setAvatar");
         }
       } catch (error) {

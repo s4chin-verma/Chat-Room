@@ -116,7 +116,7 @@ export default function App({ currentUser, currentChat, socket }) {
                                     src={message.fromSelf ? `data:image/svg+xml;base64,${currentUser.avatarImage}`
                                         : `data:image/svg+xml;base64,${currentChat.avatarImage}`}
                                     alt="avatar 1"
-                                    style={{ width: "45px", height: "100%" }}
+                                    style={{ width: "2rem", height: "100%" }}
                                 />
                                 <div>
                                     <p key={message.uuid}

@@ -33,7 +33,7 @@ export default function Home() {
                 socket.current = io(host);
                 socket.current.emit("add-user", user._id);
     
-                const response = await axios.get("http://localhost:4000/api/auth/allUsers", {
+                const response = await axios.get(allUsersRoute, {
                     headers: {
                         'Authorization': token,
                     },
@@ -45,8 +45,6 @@ export default function Home() {
             console.error("Error fetching data:", error);
         }
     };
-    
-
 
     useEffect(() => {
         fetchData();
@@ -69,7 +67,7 @@ export default function Home() {
 
     return (
         <MDBContainer fluid className="py-5" style={{ backgroundColor: "#CDC4F9", height: "100vh" }}>
-            <MDBRow>
+            <MDBRow > 
                 <MDBCol md="12">
                     <MDBCard id="chat3" style={{ borderRadius: "15px" }}>
                         <MDBCardBody>
