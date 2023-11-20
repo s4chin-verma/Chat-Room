@@ -7,6 +7,7 @@ import axios from 'axios'
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import 'react-toastify/dist/ReactToastify.css'
+import Navbar from "../components/NavBar"
 import {
   MDBBtn,
   MDBContainer,
@@ -52,6 +53,7 @@ export default function Login() {
           navigate('/');
         }
       } catch (error) {
+        toast.error("Error while Login Please try again !",toastOptions);
         console.error('Error sending data to the server:', error);
       }
     }
@@ -94,6 +96,7 @@ export default function Login() {
 
   return (
     <>
+    <Navbar />
       <MDBContainer fluid>
         <MDBCard className='text-black mt-5' style={{ borderRadius: '25px' }}>
           <MDBCardBody>

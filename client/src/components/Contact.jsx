@@ -91,7 +91,7 @@ export default function App({ contacts, currentUser, changeChat, socket }) {
                                             </div>
                                         </div>
                                         <div className="pt-1">
-                                            <p className="small text-muted mb-1">Just now</p>
+                                            {contact && (contact.isOnline ? <p className="small text-success">online</p> : <p className="small text-danger">offline</p>)}
                                             <span className="badge bg-danger rounded-pill float-end">
                                                 3
                                             </span>
