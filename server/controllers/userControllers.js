@@ -31,12 +31,12 @@ module.exports.login = async (req, res) => {
         const { username, password } = req.body;
         const user = await User.findOne({ username });
         if (!user) {
-            return res.status(401).json({ msg: 'Incorrect username or password', status: false });
+            return res.status(422).json({ msg: 'Incorrect username', status: false });
         }
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
-            return res.status(401).json({ msg: 'Incorrect username or password', status: false });
+            return res.status(401).json({ msg: 'Incorrect password', status: false });
         }
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
@@ -49,6 +49,7 @@ module.exports.login = async (req, res) => {
         res.status(500).json({ message: 'Error logging in user' });
     }
 };
+
 
 
 module.exports.setAvatar = async (req, res) => {

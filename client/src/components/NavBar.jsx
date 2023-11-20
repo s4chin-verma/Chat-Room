@@ -1,52 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
+import NavLogo from '../assets/chat-room.png';
 import {
-  MDBContainer,
-  MDBNavbar,
-  MDBNavbarBrand,
-  MDBNavbarToggler,
-  MDBNavbarNav,
-  MDBNavbarItem,
-  MDBNavbarLink,
-  MDBCollapse,
-  MDBIcon
+    MDBContainer,
+    MDBNavbar,
+    MDBNavbarBrand,
+    MDBNavbarLink,
+    MDBBtn,
 } from 'mdb-react-ui-kit';
+import { Link } from 'react-router-dom';
 
 export default function App() {
-  const [openNav, setOpenNav] = useState(false);
-
-  return (
-    <MDBNavbar expand='lg' light bgColor='light'>
-      <MDBContainer fluid>
-        <MDBNavbarBrand href='#'>Navbar</MDBNavbarBrand>
-        <MDBNavbarToggler
-          type='button'
-          aria-expanded='false'
-          aria-label='Toggle navigation'
-          onClick={() => setOpenNav(!openNav)}
-        >
-          <MDBIcon icon='bars' fas />
-        </MDBNavbarToggler>
-        <MDBCollapse navbar open={openNav}>
-          <MDBNavbarNav>
-            <MDBNavbarItem>
-              <MDBNavbarLink active aria-current='page' href='#'>
-                Home
-              </MDBNavbarLink>
-            </MDBNavbarItem>
-            <MDBNavbarItem>
-              <MDBNavbarLink href='#'>Features</MDBNavbarLink>
-            </MDBNavbarItem>
-            <MDBNavbarItem>
-              <MDBNavbarLink href='#'>Pricing</MDBNavbarLink>
-            </MDBNavbarItem>
-            <MDBNavbarItem>
-              <MDBNavbarLink disabled href='#' tabIndex={-1} aria-disabled='true'>
-                Disabled
-              </MDBNavbarLink>
-            </MDBNavbarItem>
-          </MDBNavbarNav>
-        </MDBCollapse>
-      </MDBContainer>
-    </MDBNavbar>
-  );
+    return (
+        <>
+            <MDBNavbar light bgColor='light'>
+                <MDBContainer fluid>
+                    <MDBNavbarBrand href='#'>
+                        <img src={NavLogo} height='30' alt='C-R' loading='lazy' />
+                        {' '}
+                        Chat-Room
+                    </MDBNavbarBrand>
+                    <MDBNavbarLink to='/login'>
+                        <MDBBtn outline color="success" className='me-2' type='button'>
+                            Login
+                        </MDBBtn>
+                    </MDBNavbarLink>
+                </MDBContainer>
+            </MDBNavbar>
+        </>
+    );
 }

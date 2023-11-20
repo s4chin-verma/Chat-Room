@@ -4,7 +4,7 @@ import Home from "./pages/Home"
 import Register from "./pages/Register"
 import SetAvatar from "./pages/SetAvatar"
 import Login from "./pages/Login"
-// import Temp from "./components/Temp"
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -13,7 +13,6 @@ export default function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/setAvatar" element={<SetAvatar />} />
-        {/* <Route path="/temp" element={<Temp />} /> */}
       </Routes>
     </BrowserRouter>
   )

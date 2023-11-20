@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
-import "@fortawesome/fontawesome-free/css/all.min.css";
+import { ToastContainer, toast } from 'react-toastify';
 import { registerRoute } from '../utils/APIRoutes';
+import axios from 'axios';
+import NavBar from '../components/NavBar';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {
-  MDBBtn, MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBCardImage, MDBInput, MDBIcon,
+  MDBBtn,
+  MDBContainer,
+  MDBCard,
+  MDBCardBody,
+  MDBInput,
+  MDBCheckbox
 } from 'mdb-react-ui-kit';
 
-export default function Register() {
+export default function App() {
   const navigate = useNavigate();
   const [values, setValues] = useState({
     username: "",
@@ -17,6 +23,10 @@ export default function Register() {
     password: "",
     confirmPassword: ""
   });
+
+  const handleChange = (event) => {
+    setValues({ ...values, [event.target.name]: event.target.value });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,31 +38,15 @@ export default function Register() {
           email,
           password,
         });
-        if (data.status === false) {
-          toast.error(data.msg, toastOptions);
-        }
+
         if (data.status === true) {
           navigate("/setAvatar");
         }
       } catch (error) {
+        toast.error(error.response.data.msg, toastOptions);
         console.error("Error sending data to the server:", error);
       }
     }
-  };
-
-  const toastOptions = {
-    position: "bottom-right",
-    autoClose: 8000,
-    pauseOnHover: true,
-    draggable: true,
-    style: {
-      backgroundColor: "#fff",
-      color: "#333",
-      fontSize: "16px",
-      border: "1px solid #555",
-      borderRadius: "8px",
-      boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)",
-    },
   };
 
   const handleValidation = () => {
@@ -88,62 +82,52 @@ export default function Register() {
     return true;
   };
 
-
-  const handleChange = (event) => {
-    setValues({ ...values, [event.target.name]: event.target.value });
+  const toastOptions = {
+    position: "bottom-right",
+    autoClose: 8000,
+    pauseOnHover: true,
+    draggable: true,
+    style: {
+      backgroundColor: "#fff",
+      color: "#333",
+      fontSize: "16px",
+      border: "1px solid #555",
+      borderRadius: "8px",
+      boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)",
+    },
   };
+
   return (
     <>
-      <MDBContainer fluid>
-        <MDBCard className='text-black m-5' style={{ borderRadius: '25px' }}>
-          <MDBCardBody>
-            <MDBRow>
-              <MDBCol md='10' lg='6' className='order-2 order-lg-1 d-flex flex-column align-items-center'>
-                <form onSubmit={(event) => handleSubmit(event)}>
-                  <div className='d-flex justify-content-center align-items-center mb-3'>
-                    <p className="h1 fw-bold mx-1 mx-md-4">Register</p>
-                  </div>
-
-                  <div className="d-flex flex-row align-items-center mb-4 ">
-                    <MDBIcon fas icon="user me-3" size='lg' />
-                    <MDBInput label='Username' id='form1' type='text' className='w-100' name='username' onChange={(e) => handleChange(e)} />
-                  </div>
-
-                  <div className="d-flex flex-row align-items-center mb-4">
-                    <MDBIcon fas icon="envelope me-3" size='lg' />
-                    <MDBInput label='Your Email' id='form2' type='email' name='email' onChange={(e) => handleChange(e)} />
-                  </div>
-
-                  <div className="d-flex flex-row align-items-center mb-4">
-                    <MDBIcon fas icon="lock me-3" size='lg' />
-                    <MDBInput label='Password' id='form3' type='password' name='password' onChange={(e) => handleChange(e)} />
-                  </div>
-
-                  <div className="d-flex flex-row align-items-center mb-4">
-                    <MDBIcon fas icon="key me-3" size='lg' />
-                    <MDBInput label='Repeat your password' id='form4' type='password' name='confirmPassword' onChange={(e) => handleChange(e)} />
-                  </div>
-
-                  <div className='d-flex justify-content-center align-items-center flex-column text-center'>
-                    <MDBBtn className='m-2 pl-pr-5' size='lg' type="submit">Register</MDBBtn>
-                    <span className='mt-3'>
-                      have an account? <Link to='/Login'>Login</Link>
-                    </span>
-                  </div>
-                </form>
-              </MDBCol>
-
-              <MDBCol md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
-                <MDBCardImage src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp' fluid />
-              </MDBCol>
-
-            </MDBRow>
+      <NavBar />
+      <MDBContainer fluid className='d-flex align-items-center justify-content-center'>
+        <div className='mask'></div>
+        <MDBCard className='m-5' style={{ maxWidth: '600px' }}>
+          <MDBCardBody className='px-5'>
+            <h2 className="text-uppercase text-center mb-5">Create an account</h2>
+            <form onSubmit={(event) => handleSubmit(event)}>
+              <MDBInput wrapperClass='mb-4' label='Username' size='lg' id='form1' type='text'
+                name='username' onChange={(e) => handleChange(e)} />
+              <MDBInput wrapperClass='mb-4' label='Your Email' size='lg' id='form2' type='email'
+                name='email' onChange={(e) => handleChange(e)} />
+              <MDBInput wrapperClass='mb-4' label='Password' size='lg' id='form3' type='password'
+                name='password' onChange={(e) => handleChange(e)} />
+              <MDBInput wrapperClass='mb-4' label='Repeat your password' size='lg' id='form4' type='password'
+                name='confirmPassword' onChange={(e) => handleChange(e)} />
+              <div className='d-flex flex-row justify-content-center mb-4'>
+                <MDBCheckbox name='flexCheck' id='flexCheckDefault' label='I agree all statements in Terms of service' />
+              </div>
+              <MDBBtn className='mb-4 w-100' size='lg' type='submit'>Register</MDBBtn>
+            </form>
+            <span className='mt-3 my-auto'>
+              have an account? <Link to='/Login'>Login</Link>
+            </span>
           </MDBCardBody>
         </MDBCard>
-
       </MDBContainer>
       <ToastContainer />
     </>
   );
-}
+};
+
 
