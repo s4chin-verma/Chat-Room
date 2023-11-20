@@ -1,9 +1,10 @@
-import React from "react";
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from "./pages/Home"
-import Register from "./pages/Register"
-import SetAvatar from "./pages/SetAvatar"
-import Login from "./pages/Login"
+import Home from './pages/Home';
+import Register from './pages/Register';
+import SetAvatar from './pages/SetAvatar';
+import Login from './pages/Login';
+import Error from './pages/Error';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/setAvatar" element={<SetAvatar />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
   )
