@@ -97,7 +97,6 @@ export default function App({ currentUser, currentChat, socket }) {
                     </div>
                     <div className="pt-1">
                         <p className="fw-bold mb-0">{currentChat.username}</p>
-                        <p className="small text-muted">Hello, Are you there?</p>
                     </div>
                 </div>
             </div>

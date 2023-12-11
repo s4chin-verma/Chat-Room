@@ -20,8 +20,8 @@ export default function Home() {
     const [currentUser, setCurrentUser] = useState({ _id: null, isOnline: false });
     const [contacts, setContacts] = useState([]);
     const [currentChat, setCurrentChat] = useState(undefined);
-    
- 
+
+
     const fetchData = async () => {
         try {
             const token = localStorage.getItem("chat-token");
@@ -32,13 +32,13 @@ export default function Home() {
                 setCurrentUser(user);
                 socket.current = io(host);
                 socket.current.emit("add-user", user._id);
-    
+
                 const response = await axios.get(allUsersRoute, {
                     headers: {
                         'Authorization': token,
                     },
                 });
-    
+
                 setContacts(response.data);
             }
         } catch (error) {
@@ -67,7 +67,7 @@ export default function Home() {
 
     return (
         <MDBContainer fluid className="py-5" style={{ backgroundColor: "#CDC4F9", height: "100vh" }}>
-            <MDBRow > 
+            <MDBRow >
                 <MDBCol md="12">
                     <MDBCard id="chat3" style={{ borderRadius: "15px" }}>
                         <MDBCardBody>
@@ -82,7 +82,10 @@ export default function Home() {
                                 </MDBCol>
                                 <MDBCol md="6" lg="7" xl="8">
                                     {currentChat === undefined ? (
-                                        <h1>HELOO</h1>
+                                        <div className="d-flex flex-row justify-content-center align-items-center">
+                                            <h1 className="">Please Select a User to start a chat</h1>
+                                        </div>
+
                                     ) : (
                                         <Chat currentChat={currentChat}
                                             currentUser={currentUser}
