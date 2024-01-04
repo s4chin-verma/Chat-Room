@@ -24,7 +24,7 @@ export default function Home() {
 
     const fetchData = async () => {
         try {
-            const token = localStorage.getItem("chat-token");
+            const token = JSON.parse(localStorage.getItem("chat-token"));
             if (!token) {
                 navigate("/login");
             } else {

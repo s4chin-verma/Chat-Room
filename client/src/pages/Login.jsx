@@ -36,7 +36,7 @@ export default function Login() {
 
         if (data.status === true) {
           localStorage.setItem('chat-user', JSON.stringify(data.user));
-          localStorage.setItem('chat-token', data.token);
+          localStorage.setItem('chat-token', JSON.stringify(data.token));
           setTimeout(() => {
             localStorage.clear();
           }, 100000);

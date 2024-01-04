@@ -15,27 +15,13 @@ export default function SetAvatar() {
   const [avatar, setAvatar] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedAvatar, setSelectedAvatar] = useState(undefined);
-  const toastOptions = {
-    position: "bottom-right",
-    autoClose: 8000,
-    pauseOnHover: true,
-    draggable: true,
-    style: {
-      backgroundColor: "#fff",
-      color: "#333",
-      fontSize: "16px",
-      border: "1px solid #555",
-      borderRadius: "8px",
-      boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)",
-    },
-  };
+
 
   useEffect(() => {
     if (!localStorage.getItem('chat-user')) {
       navigate("/login");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [navigate]);
 
   const setProfilePicture = async () => {
     if (selectedAvatar === undefined) {
@@ -48,7 +34,7 @@ export default function SetAvatar() {
         user.isAvatarImageSet = true;
         user.avatarImage = data.image;
         localStorage.setItem('chat-user', JSON.stringify(user));
-        // await toast,error("Avatar set successfully. Please log in again to start the chat", toastOptions);
+        toast.error("Avatar set successfully. Please log in again to start the chat", toastOptions);
         navigate("/");
       } else {
         toast.error("Error setting Avatar, please try again", toastOptions);
@@ -75,6 +61,21 @@ export default function SetAvatar() {
 
     fetchData();
   }, []);
+
+  const toastOptions = {
+    position: "bottom-right",
+    autoClose: 8000,
+    pauseOnHover: true,
+    draggable: true,
+    style: {
+      backgroundColor: "#fff",
+      color: "#333",
+      fontSize: "16px",
+      border: "1px solid #555",
+      borderRadius: "8px",
+      boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)",
+    },
+  };
   return (
     <>
       {

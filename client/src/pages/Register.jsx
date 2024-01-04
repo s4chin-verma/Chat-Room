@@ -40,6 +40,8 @@ export default function App() {
         });
 
         if (data.status === true) {
+          localStorage.setItem('chat-user', JSON.stringify(data.user));
+          localStorage.setItem('chat-token', JSON.stringify(data.token));
           navigate("/setAvatar");
         }
       } catch (error) {

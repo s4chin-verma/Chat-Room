@@ -7,7 +7,4 @@ router.post("/login", login);
 router.post("/setAvatar/:id", setAvatar);
 router.get("/allUsers", verifyToken, getAllUsers);
 
-
-
-
 module.exports = router;

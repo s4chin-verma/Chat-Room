@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import SetAvatar from './pages/SetAvatar';
@@ -8,7 +8,7 @@ import Error from './pages/Error';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
@@ -16,6 +16,6 @@ export default function App() {
         <Route path="/setAvatar" element={<SetAvatar />} />
         <Route path="*" element={<Error />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   )
 }
