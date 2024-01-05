@@ -94,11 +94,9 @@ module.exports.setAvatar = async (req, res) => {
 
 module.exports.getAllUsers = async (req, res) => {
     try {
-        console.log("request comig...")
         const users = await User.find({ _id: { $ne: req.userId } }).select([
             "_id",
             "username",
-            "email",
             "avatarImage",
             "isOnline"
         ]);

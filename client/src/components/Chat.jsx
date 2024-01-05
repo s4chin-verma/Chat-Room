@@ -43,11 +43,12 @@ export default function App({ currentUser, currentChat, socket }) {
 
     useEffect(() => {
         const fetchMessages = async () => {
+            const token = JSON.parse(localStorage.getItem("chat-token"));
             try {
                 if (currentChat) {
-                    const response = await axios.post(getAllMessagesRoute, {
-                        from: currentUser._id,
-                        to: currentChat._id,
+                    const response = await axios.get(getAllMessagesRoute, {
+                        params: { to: currentChat._id },
+                        headers: { 'Authorization': token }
                     });
 
                     setMessages(response.data);
@@ -60,7 +61,7 @@ export default function App({ currentUser, currentChat, socket }) {
         if (currentChat) {
             fetchMessages();
         }
-    }, [currentChat, currentUser._id]);
+    }, [currentChat]);
 
 
     useEffect(() => {

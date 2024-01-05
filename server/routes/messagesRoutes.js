@@ -3,7 +3,7 @@ const router = express.Router();
 const { getAllMessages, addMessage } = require('../controllers/messageControllers');
 const verifyToken = require('../middleware/verifyToken'); 
 
-router.post('/addmsg', addMessage);
-router.post('/getmsg', getAllMessages);
+router.post('/addmsg',verifyToken, addMessage);
+router.get('/getmsg',verifyToken, getAllMessages);
 
 module.exports = router;

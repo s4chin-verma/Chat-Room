@@ -1,7 +1,8 @@
 const Messages = require('../models/messageModels');
 
 module.exports.getAllMessages = async (req, res) => {
-  const { from, to } = req.body;
+  const { to } = req.query;
+  const from = req.userId;
 
   try {
     const messages = await Messages.find({
